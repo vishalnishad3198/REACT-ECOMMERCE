@@ -7,3 +7,13 @@ export function ProductListApi() {
   }
   );
 }
+
+
+export function ProductListFilterApi(queryString) {
+  return new Promise(async (resolve) =>{
+    const response = await fetch(`http://localhost:8080/products/?${queryString.name}=${queryString.value}`);
+    const data = await response.json();
+    resolve({data})
+  }
+  );
+}
