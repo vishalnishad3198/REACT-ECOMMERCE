@@ -2,7 +2,9 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { cartListAsync, removeCartAsync } from '../product-list/productListSlice'
+import { useEffect } from 'react'
 const products = [
     {
         id: 1,
@@ -28,9 +30,23 @@ const products = [
     // More products...
 ]
 
-export default function Example() {
+export default function Cart() {
     const [open, setOpen] = useState(true)
-
+    const cart = useSelector(state=>state.product.cart);
+    const dispatch = useDispatch();
+    console.log(cart)
+    let totalAmount =0;
+     cart?.map((item)=>{
+       return totalAmount += Math.floor(item.price - (item.price*item.discountPercentage/100))
+    })
+    const handleRemove = (id)=>{
+       dispatch(removeCartAsync(id));
+       dispatch(cartListAsync());
+    }
+    useEffect(()=>{
+        dispatch(cartListAsync())
+       },[dispatch])
+    console.log(totalAmount)
     return (
 
 
@@ -54,12 +70,12 @@ export default function Example() {
                 <div className="mt-8">
                     <div className="flow-root">
                         <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {products.map((product) => (
+                            {cart.map((product) => (
                                 <li key={product.id} className="flex py-6">
                                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                         <img
-                                            src={product.imageSrc}
-                                            alt={product.imageAlt}
+                                            src={product.images[0]}
+                                            alt={product.title}
                                             className="h-full w-full object-cover object-center"
                                         />
                                     </div>
@@ -68,17 +84,21 @@ export default function Example() {
                                         <div>
                                             <div className="flex justify-between text-base font-medium text-gray-900">
                                                 <h3>
-                                                    <a href={product.href}>{product.name}</a>
+                                                    <p>{product.title}</p>
                                                 </h3>
-                                                <p className="ml-4">{product.price}</p>
+                                                <div>
+                                                <p className="ml-4">${Math.floor(product.price - (product.price*product.discountPercentage/100))}</p>
+                                                {/* <p className="mt-1 ml-4 text-sm text-gray-500 line-through">${product.price}</p> */}
+                                                </div>
                                             </div>
-                                            <p className="mt-1 text-sm text-gray-500">{product.color}</p>
+                                            <p className="mt-1 text-sm text-gray-500">{product?.color}</p>
                                         </div>
                                         <div className="flex flex-1 items-end justify-between text-sm">
-                                            <p className="text-gray-500">Qty {product.quantity}</p>
+                                            <p className="text-gray-500">Qty 1</p>
 
                                             <div className="flex">
                                                 <button
+                                                    onClick={()=>handleRemove(product.id)}
                                                     type="button"
                                                     className="font-medium text-indigo-600 hover:text-indigo-500"
                                                 >
@@ -97,7 +117,11 @@ export default function Example() {
             <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                 <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>Subtotal</p>
-                    <p>$262.00</p>
+                    <p>${totalAmount}</p>
+                </div>
+                <div className="flex justify-between text-base font-medium text-gray-900">
+                    <p>Total items</p>
+                    <p>{cart.length} items</p>
                 </div>
                 <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                 <div className="mt-6">

@@ -5,6 +5,7 @@ import { ProductListApi } from '../features/product-list/productListApi';
 export const store = configureStore({
   reducer: {
     product: productListSlice,
+    
   },
   applyMiddleware:{ProductListApi}
 });

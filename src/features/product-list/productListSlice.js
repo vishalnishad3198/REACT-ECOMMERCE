@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ProductListApi} from './productListApi';
+import { AddToCartApi, CartListApi, ProductListApi, RemoveCartApi} from './productListApi';
 import { ProductListFilterApi } from './productListApi';
 const initialState = {
  products: [],
+ cart:[],
   
 };
 
@@ -24,6 +25,34 @@ export const productFilterAsync = createAsyncThunk(
     return response.data;
   }
 );
+
+export const addToCartAsync = createAsyncThunk(
+  'product/addToCart',
+  async (item) => {
+    const response = await AddToCartApi(item);
+  
+    return response.data;
+  }
+);
+
+export const cartListAsync = createAsyncThunk(
+  'product/cartList',
+  async () => {
+    const response = await CartListApi();
+  
+    return response.data;
+  }
+);
+
+export const removeCartAsync = createAsyncThunk(
+  'product/removeCart',
+  async (id) => {
+    const response = await RemoveCartApi(id);
+  
+    return response.data;
+  }
+);
+
 
 export const productListSlice = createSlice({
   name: 'product',
@@ -47,7 +76,19 @@ export const productListSlice = createSlice({
       .addCase(productFilterAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.products =[ ...action.payload];
-      });
+      })
+      .addCase(addToCartAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.cart = [...state.cart,action.payload];
+      })
+      .addCase(cartListAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.cart = [...action.payload];
+      })
+      .addCase(removeCartAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.cart = state.cart;
+      })
   },
 });
 

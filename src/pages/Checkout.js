@@ -60,7 +60,7 @@ const address =[
 
 export default function Checkout() {
   const [open, setOpen] = useState(true);
-
+  
   return (
     <form>
       <div className='grid grid-cols-2 my-12 '>

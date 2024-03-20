@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { productListAsync } from './productListSlice';
 import { StarIcon } from '@heroicons/react/24/outline'; 
@@ -12,18 +12,20 @@ export default function ProductList() {
   
  useEffect(()=>{
   dispatch(productListAsync())
- },[])
+ },[dispatch])
+
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 lg:py-4">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900 ">Customers also purchased</h2>
-
+        { products ?
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3     xl:gap-x-8  ">
           {products.map((product) => (
+           
             <div key={product.id} className="group relative py-3 px-6 border border-solid-gray-500 lg:h-80">
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">
                 <p className='bg-white text-right'>{product.rating} <StarIcon className='h-4 inline-block '></StarIcon></p>
-                <Link to={`/product-details`}>
+                <Link to={`/product-details/${product.id}`}>
                 <img
                   src={product.images[0]}
                   alt={product.title}
@@ -51,6 +53,7 @@ export default function ProductList() {
             
           ))}
         </div>
+        :null}
       </div>
     </div>
   )

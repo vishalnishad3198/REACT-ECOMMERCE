@@ -5,8 +5,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 import ProductList from '../product-list/productList';
 import { useDispatch } from 'react-redux';
-import { productFilterAsync } from '../product-list/productListSlice';
-
+import { productFilterAsync, productListAsync } from '../product-list/productListSlice';
 
 const sortOptions = [
   { name: 'Best Rating', href: '#', current: false },
@@ -22,7 +21,7 @@ const filters = [
     options: [
       { value: "smartphones", label: "smartphones", checked: false },
       { value: "laptops", label: "laptops", checked: false },
-      { value: "fragrances", label: "fragrances", checked: true },
+      { value: "fragrances", label: "fragrances", checked: false },
       { value: "skincare", label: "skincare", checked: false },
       { value: "groceries", label: "groceries", checked: false },
       { value: "home-decoration", label: "home-decoration", checked: false },
@@ -30,7 +29,7 @@ const filters = [
     ],
   },
   {
-    id: 'Brand',
+    id: 'brand',
     name: 'Brand',
     options: [
 
@@ -61,18 +60,43 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function ProductFilter() {
+
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-
+  const [filter, setFilter] = useState([]);
   const dispatch = useDispatch();
+
   const handleFilter = (e) => {
+    if (e.target.checked) {
+      let category = e.target.name.slice(0, -2).toLowerCase()
+      let data = { name: category, value: e.target.value };
 
-    let category = e.target.name.slice(0, -2).toLowerCase()
-    let queryString = { name: [category], value: e.target.value }
+      dispatch(productFilterAsync(data))
+      setFilter([...filter, data])
+      console.log('true condition')
+    } else {
 
-    dispatch(productFilterAsync(queryString))
+      let newData = filter.filter((val) => {
+        return val.value !== e.target.value;
+      })
+      console.log(newData)
+      setFilter(newData);
 
-    console.log(e.target.checked)
+      if (newData.length > 0) {
+
+
+        let num = Math.floor(Math.random() * filter.length) // use num for show random filter data
+        dispatch(productFilterAsync(filter[num]))
+
+
+      } else {
+        dispatch(productListAsync());
+      }
+    }
+  }
+
+  const handleSort = (e)=>{
+    console.log(e.target.name)
   }
 
   return (
@@ -143,7 +167,7 @@ export default function Example() {
                                   <div key={option.value} className="flex items-center">
                                     <input
                                       id={`filter-mobile-${section.id}-${optionIdx}`}
-                                      name={`${section.id}[]`}
+                                      name={`${section.id}`}
                                       defaultValue={option.value}
                                       type="checkbox"
                                       defaultChecked={option.checked}
@@ -200,16 +224,15 @@ export default function Example() {
                       {sortOptions.map((option) => (
                         <Menu.Item key={option.name}>
                           {({ active }) => (
-                            <a
-                              href={option.href}
+                            <button onClick={(e)=>handleSort(e)} 
+                            name={option.name}
                               className={classNames(
                                 option.current ? 'font-medium text-gray-900' : 'text-gray-500',
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm'
+
                               )}
                             >
                               {option.name}
-                            </a>
+                            </button>
                           )}
                         </Menu.Item>
                       ))}
