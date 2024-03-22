@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { AddToCartApi, CartListApi, ProductListApi, RemoveCartApi} from './productListApi';
+import { AddToCartApi, BestRatingApi, CartListApi, CheckUserApi, CreateUserApi, DecrementItemApi, IncrementItemApi, PriceHeighToLowApi, PriceLowToHeighApi, ProductListApi, RemoveCartApi} from './productListApi';
 import { ProductListFilterApi } from './productListApi';
 const initialState = {
  products: [],
  cart:[],
+ user:null
   
 };
 
@@ -53,6 +54,68 @@ export const removeCartAsync = createAsyncThunk(
   }
 );
 
+export const incrementItemAsync = createAsyncThunk(
+  'product/incrementItem',
+  async (item) => {
+    const response = await IncrementItemApi(item);
+  
+    return response.data;
+  }
+);
+
+export const decrementItemAsync = createAsyncThunk(
+  'product/decrementItem',
+  async (item) => {
+    const response = await DecrementItemApi(item);
+  
+    return response.data;
+  }
+);
+
+export const priceHeighToLowAsync = createAsyncThunk(
+  'product/heighToLow',
+  async () => {
+    const response = await PriceHeighToLowApi();
+  
+    return response.data;
+  }
+);
+
+export const priceLowToHeighAsync = createAsyncThunk(
+  'product/lowToHeigh',
+  async () => {
+    const response = await PriceLowToHeighApi();
+  
+    return response.data;
+  }
+);
+
+export const bestRatingAsync = createAsyncThunk(
+  'product/bestRating',
+  async () => {
+    const response = await BestRatingApi();
+  
+    return response.data;
+  }
+);
+
+export const createUserAsync = createAsyncThunk(
+  'product/createUser',
+  async (userData) => {
+    const response = await CreateUserApi(userData);
+  
+    return response.data;
+  }
+);
+
+export const checkUserAsync = createAsyncThunk(
+  'product/checkUser',
+  async () => {
+    const response = await CheckUserApi();
+  
+    return response.data;
+  }
+);
 
 export const productListSlice = createSlice({
   name: 'product',
@@ -88,6 +151,34 @@ export const productListSlice = createSlice({
       .addCase(removeCartAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.cart = state.cart;
+      })
+      .addCase(incrementItemAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.cart = state.cart
+      })
+      .addCase(decrementItemAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.cart = state.cart;
+      })
+      .addCase(priceLowToHeighAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.products = action.payload;
+      })
+      .addCase(priceHeighToLowAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.products = action.payload;
+      })
+      .addCase(bestRatingAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.products = action.payload;
+      })
+      .addCase(createUserAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.user = action.payload;
+      })
+      .addCase(checkUserAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.user = action.payload;
       })
   },
 });

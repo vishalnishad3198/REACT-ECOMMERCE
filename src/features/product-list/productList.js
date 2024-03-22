@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { productListAsync } from './productListSlice';
+import { priceHeighToLowAsync, productListAsync } from './productListSlice';
 import { StarIcon } from '@heroicons/react/24/outline'; 
 import { Link } from 'react-router-dom';
 

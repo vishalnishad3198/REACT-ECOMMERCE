@@ -5,7 +5,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 import ProductList from '../product-list/productList';
 import { useDispatch } from 'react-redux';
-import { productFilterAsync, productListAsync } from '../product-list/productListSlice';
+import { bestRatingAsync, priceHeighToLowAsync, priceLowToHeighAsync, productFilterAsync, productListAsync } from '../product-list/productListSlice';
 
 const sortOptions = [
   { name: 'Best Rating', href: '#', current: false },
@@ -94,8 +94,12 @@ export default function ProductFilter() {
       }
     }
   }
-
+  
   const handleSort = (e)=>{
+    e.target.name === 'Price: Low to High' && dispatch(priceLowToHeighAsync());
+    e.target.name === 'Price: High to Low' && dispatch(priceHeighToLowAsync());
+    e.target.name === 'Best Rating' && dispatch(bestRatingAsync());
+    
     console.log(e.target.name)
   }
 
@@ -319,7 +323,7 @@ export default function ProductFilter() {
               </form>
 
               {/* Product grid */}
-              <div className="lg:col-span-3">{<ProductList></ProductList>}</div>
+              <div className="lg:col-span-3">{<ProductList ></ProductList>}</div>
             </div>
           </section>
         </main>
