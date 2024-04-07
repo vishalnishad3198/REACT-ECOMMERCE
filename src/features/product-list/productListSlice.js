@@ -1,11 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { AddToCartApi, BestRatingApi, CartListApi, CheckUserApi, CreateUserApi, DecrementItemApi, IncrementItemApi, PriceHeighToLowApi, PriceLowToHeighApi, ProductListApi, RemoveCartApi} from './productListApi';
+import { AddToCartApi, AddressApi, BestRatingApi, CartListApi, CreateUserApi, DecrementItemApi, GetAddressApi, GetOrderApi, IncrementItemApi, LoginUserApi, OrderApi, PriceHeighToLowApi, PriceLowToHeighApi, ProductListApi, RemoveCartApi} from './productListApi';
 import { ProductListFilterApi } from './productListApi';
 const initialState = {
  products: [],
  cart:[],
- user:null
-  
+ user:[],
+ loggedInUser:[],
+ address:[],
+ order:[]
+
 };
 
 
@@ -38,8 +41,8 @@ export const addToCartAsync = createAsyncThunk(
 
 export const cartListAsync = createAsyncThunk(
   'product/cartList',
-  async () => {
-    const response = await CartListApi();
+  async (userId) => {
+    const response = await CartListApi(userId);
   
     return response.data;
   }
@@ -108,10 +111,46 @@ export const createUserAsync = createAsyncThunk(
   }
 );
 
-export const checkUserAsync = createAsyncThunk(
-  'product/checkUser',
-  async () => {
-    const response = await CheckUserApi();
+export const loginUserAsync = createAsyncThunk(
+  'product/loginUser',
+  async (userData) => {
+    const response = await LoginUserApi(userData);
+  
+    return response.data;
+  }
+);
+
+export const addressAsync = createAsyncThunk(
+  'product/address',
+  async (userData) => {
+    const response = await AddressApi(userData);
+  
+    return response.data;
+  }
+);
+
+export const getAddressAsync = createAsyncThunk(
+  'product/getAddress',
+  async (userId) => {
+    const response = await GetAddressApi(userId);
+  
+    return response.data;
+  }
+);
+
+export const orderAsync = createAsyncThunk(
+  'product/order',
+  async (orderData) => {
+    const response = await OrderApi(orderData);
+  
+    return response.data;
+  }
+);
+
+export const getOrderAsync = createAsyncThunk(
+  'product/getOrder',
+  async (userId) => {
+    const response = await GetOrderApi(userId);
   
     return response.data;
   }
@@ -124,7 +163,8 @@ export const productListSlice = createSlice({
   reducers: {
   increment:(state)=>{
     state.state='increment'
-  }
+  },
+  
   },
  
   extraReducers: (builder) => {
@@ -175,15 +215,34 @@ export const productListSlice = createSlice({
       .addCase(createUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.user = action.payload;
+        state.loggedInUser = action.payload;
       })
-      .addCase(checkUserAsync.fulfilled, (state, action) => {
+      .addCase(loginUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.user = action.payload;
+        state.loggedInUser = action.payload;
+      })
+      .addCase(addressAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.address.push(action.payload);
+        
+      })
+      .addCase(getAddressAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.address=action.payload;
+        
+      })
+      .addCase(orderAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.order.push(action.payload);
+      })
+      .addCase(getOrderAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.order = action.payload;
       })
   },
 });
 
-export const { increment, } = productListSlice.actions;
+export const { addAddress } = productListSlice.actions;
 
 
 

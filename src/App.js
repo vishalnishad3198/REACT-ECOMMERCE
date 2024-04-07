@@ -11,6 +11,7 @@ import ProductDetails from './pages/ProductDetails';
 import { useDispatch } from 'react-redux';
 import { cartListAsync } from './features/product-list/productListSlice';
 import ProtectedPage from './pages/ProtectedPage';
+import OrderDetails from './pages/OrderDetails';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,8 +25,9 @@ function App() {
         
         <Route path='/' element={<ProtectedPage><Home></Home></ProtectedPage>} />
         <Route path='/cart' element={<ProtectedPage><Cart></Cart></ProtectedPage>} />
-        <Route path='/checkout' element={<ProtectedPage><Checkout></Checkout></ProtectedPage>} />
+        <Route path='/checkout/:total/:items' element={<ProtectedPage><Checkout></Checkout></ProtectedPage>} />
         <Route path='/product-details/:id' element={<ProtectedPage><ProductDetails></ProductDetails></ProtectedPage>} />
+        <Route path='/order' element={<ProtectedPage><OrderDetails></OrderDetails></ProtectedPage>} />
         
         <Route path='/login' element={<LoginPage></LoginPage>} />
         <Route path='/signup' element={<SignupPage></SignupPage>} />

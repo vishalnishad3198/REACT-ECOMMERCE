@@ -10,6 +10,8 @@ import { useEffect } from 'react'
 export default function Cart() {
     const [open, setOpen] = useState(true)
     const cart = useSelector(state=>state.product.cart);
+    const loginUser = useSelector(state=>state.product.loggedInUser);
+
     const dispatch = useDispatch();
     console.log(cart)
     let totalAmount =0;
@@ -22,14 +24,15 @@ export default function Cart() {
      })
     const handleRemove = (id)=>{
        dispatch(removeCartAsync(id));
-       dispatch(cartListAsync());
+       dispatch(cartListAsync(loginUser[0]?.id));
     }
 
     const incrementQty = (item)=>{
         // if(item.quantity < 10 ){
         let newItem = {...item,quantity:item.quantity+1}
           dispatch(incrementItemAsync(newItem))
-          dispatch(cartListAsync())
+          dispatch(cartListAsync(loginUser[0]?.id));
+
         // }
     }
 
@@ -37,12 +40,13 @@ export default function Cart() {
         if(item.quantity > 1 ){
         let newItem = {...item,quantity:item.quantity-1}
         dispatch(decrementItemAsync(newItem))
-        dispatch(cartListAsync())
+        dispatch(cartListAsync(loginUser[0]?.id));
+
         }
     }
     useEffect(()=>{
-        dispatch(cartListAsync())
-       },[])
+        dispatch(cartListAsync(loginUser[0]?.id));
+       },[dispatch])
 
     console.log(totalAmount)
    
@@ -130,7 +134,7 @@ export default function Cart() {
                 <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                 <div className="mt-6">
                     <Link
-                        to={'/checkout'}
+                        to={`/checkout/${totalAmount}/${cartLength}`}
                         className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                     >
                         Checkout

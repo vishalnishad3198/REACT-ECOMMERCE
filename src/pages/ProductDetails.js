@@ -56,29 +56,30 @@ export default function ProductDetails() {
   const param = useParams();
   const products = useSelector(state => state.product.products[param.id - 1]);
   const cart = useSelector(state => state.product.cart);
+  const loggedUser = useSelector(state => state.product.loggedInUser);
+
   const dispatch = useDispatch();
 
   console.log('parameter', param.id)
-  console.log(products)
+ 
+  let cartCheck = cart.filter(val => val.productId === products.id);
+      console.log('cartCheck', cartCheck)
 
   const handleCart = (e) => {
     e.preventDefault();
-    dispatch(addToCartAsync({ ...products, quantity: 1 }))
-    console.log(products)
+    dispatch(addToCartAsync({ ...products,productId:products.id,user:loggedUser[0].id,quantity: 1 }))
+    dispatch(cartListAsync(loggedUser[0]?.id));
+    
   }
+console.log(loggedUser)
+ 
+console.log(cart.productId)
 
-  let cartCheck = cart.filter(val => val.id === products.id)
-  console.log('cartCheck', cartCheck)
-  console.log(cartCheck[0]?.id && 'available')
+  // useEffect(() => {
+  //   dispatch(cartListAsync(loggedUser[0]?.id));
+  // }, [dispatch])
 
-  useEffect(() => {
-    dispatch(cartListAsync());
-  }, [dispatch])
-
-  const handleForm = (e)=>{
-    e.preventDefault();
-    dispatch(cartListAsync());
-  }
+  
 
   return (
     <div className="bg-white">
@@ -182,7 +183,7 @@ export default function ProductDetails() {
               </div>
             </div>
 
-            <form className="mt-10" onSubmit={(e)=>handleForm(e)} >
+            <form className="mt-10" onSubmit={(e)=>e.preventDefault()} >
               {/* Colors */}
               <div>
                 <h3 className="text-sm font-medium text-gray-900">Color</h3>
@@ -280,7 +281,7 @@ export default function ProductDetails() {
                   </div>
                 </RadioGroup>
               </div>
-         {    !cartCheck[0]?.id ? 
+         {    !cartCheck[0]?.productId ? 
               < button onClick={(e) => handleCart(e)}
               className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >

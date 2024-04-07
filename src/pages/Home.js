@@ -1,7 +1,9 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import ProductFilter from '../features/cart/ProductFilter'
+import { useDispatch, useSelector } from 'react-redux'
+import { cartListAsync } from '../features/product-list/productListSlice'
 
 const user = {
   name: 'Tom Cook',
@@ -27,6 +29,12 @@ function classNames(...classes) {
 }
 
 export default function Home() {
+
+  const loginUser = useSelector(state=>state.product.loggedInUser);
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(cartListAsync(loginUser[0]?.id));
+   },[dispatch])
   return (
     <>
 

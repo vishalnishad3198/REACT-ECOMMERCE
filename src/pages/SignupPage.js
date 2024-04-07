@@ -1,29 +1,31 @@
 import { Link, Navigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { checkUserAsync, createUserAsync } from "../features/product-list/productListSlice";
+import { createUserAsync, loginUserAsync } from "../features/product-list/productListSlice";
 
 export default function SignupPage() {
   const [customError, setCumstomError] = useState(false);
-  const user = useSelector(state => state.product.user);
+  const loginUser = useSelector(state => state.product.loggedInUser);
   const dispatch = useDispatch();
-  console.log(user)
+ 
   const {
-    register, handleSubmit, watch, formState: { errors }, getValues } = useForm();
+    register, handleSubmit, watch, formState: { errors }, getValues,reset } = useForm();
 
   const onSubmit = (data) => {
     console.log('data', data)
     dispatch(createUserAsync(data))
+    dispatch(loginUserAsync(data))
 
+    reset();
     setCumstomError(true);
   }
-  useEffect(() => {
-    dispatch(checkUserAsync());
-  }, [dispatch])
+ 
+  console.log(loginUser)
   return (
     <>
-      {user && <Navigate to={'/'} replace={true}></Navigate>}
+ {loginUser[0]?.email ? <Navigate to={'/'} replace={true}></Navigate>
+      :
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
 
@@ -123,6 +125,7 @@ export default function SignupPage() {
           </p>
         </div>
       </div>
+}
     </>
   )
 }

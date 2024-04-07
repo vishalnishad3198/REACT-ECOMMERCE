@@ -12,6 +12,7 @@ export default function ProductList() {
   
  useEffect(()=>{
   dispatch(productListAsync())
+  
  },[dispatch])
 
   return (

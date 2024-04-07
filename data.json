@@ -1105,9 +1105,46 @@
       ]
     }
   ],
+  "user": [
+    {
+      "email": "vishal0073198@gmail.com",
+      "password": "Vishal@3198",
+      "checkPassword": "Vishal@3198",
+      "id": 1
+    },
+    {
+      "email": "vishal0073198@gmail.com",
+      "password": "Test@123",
+      "checkPassword": "Test@123",
+      "id": 2
+    },
+    {
+      "email": "anil@test.com",
+      "password": "Anil@1122",
+      "checkPassword": "Anil@1122",
+      "id": 3
+    },
+    {
+      "email": "ritik@test.com",
+      "password": "Ritik@123",
+      "checkPassword": "Ritik@123",
+      "id": 4
+    },
+    {
+      "email": "abhishek@test.com",
+      "password": "Abhishek@123",
+      "checkPassword": "Abhishek@123",
+      "id": 5
+    },
+    {
+      "email": "vishal0073198@gmail.com",
+      "password": "Vishal@123",
+      "checkPassword": "Vishal@123",
+      "id": 6
+    }
+  ],
   "cart": [
     {
-      "id": 27,
       "title": "Flying Wooden Bird",
       "description": "Package Include 6 Birds with Adhesive Tape Shape: 3D Shaped Wooden Birds Material: Wooden MDF, Laminated 3.5mm",
       "price": 51,
@@ -1124,10 +1161,12 @@
         "https://cdn.dummyjson.com/product-images/27/4.jpg",
         "https://cdn.dummyjson.com/product-images/27/thumbnail.webp"
       ],
-      "quantity": 7
+      "productId": 27,
+      "user": 3,
+      "quantity": 1,
+      "id": 10
     },
     {
-      "id": 2,
       "title": "iPhone X",
       "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
       "price": 899,
@@ -1143,50 +1182,12 @@
         "https://cdn.dummyjson.com/product-images/2/3.jpg",
         "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
       ],
-      "quantity": 7
+      "productId": 2,
+      "user": 4,
+      "quantity": 1,
+      "id": 11
     },
     {
-      "id": 1,
-      "title": "iPhone 9",
-      "description": "An apple mobile which is nothing like apple",
-      "price": 549,
-      "discountPercentage": 12.96,
-      "rating": 4.69,
-      "stock": 94,
-      "brand": "Apple",
-      "category": "smartphones",
-      "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
-      "images": [
-        "https://cdn.dummyjson.com/product-images/1/1.jpg",
-        "https://cdn.dummyjson.com/product-images/1/2.jpg",
-        "https://cdn.dummyjson.com/product-images/1/3.jpg",
-        "https://cdn.dummyjson.com/product-images/1/4.jpg",
-        "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"
-      ],
-      "quantity": 21
-    },
-    {
-      "id": 9,
-      "title": "Infinix INBOOK",
-      "description": "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty",
-      "price": 1099,
-      "discountPercentage": 11.83,
-      "rating": 4.54,
-      "stock": 96,
-      "brand": "Infinix",
-      "category": "laptops",
-      "thumbnail": "https://cdn.dummyjson.com/product-images/9/thumbnail.jpg",
-      "images": [
-        "https://cdn.dummyjson.com/product-images/9/1.jpg",
-        "https://cdn.dummyjson.com/product-images/9/2.png",
-        "https://cdn.dummyjson.com/product-images/9/3.png",
-        "https://cdn.dummyjson.com/product-images/9/4.jpg",
-        "https://cdn.dummyjson.com/product-images/9/thumbnail.jpg"
-      ],
-      "quantity": 7
-    },
-    {
-      "id": 29,
       "title": "Handcraft Chinese style",
       "description": "Handcraft Chinese style art luxury palace hotel villa mansion home decor ceramic vase with brass fruit plate",
       "price": 60,
@@ -1203,21 +1204,370 @@
         "https://cdn.dummyjson.com/product-images/29/4.webp",
         "https://cdn.dummyjson.com/product-images/29/thumbnail.webp"
       ],
-      "quantity": 8
+      "productId": 29,
+      "user": 6,
+      "quantity": 1,
+      "id": 12
+    },
+    {
+      "title": "Gulab Powder 50 Gram",
+      "description": "Dry Rose Flower Powder Gulab Powder 50 Gram • Treats Wounds",
+      "price": 70,
+      "discountPercentage": 13.58,
+      "rating": 4.87,
+      "stock": 47,
+      "brand": "Dry Rose",
+      "category": "groceries",
+      "thumbnail": "https://cdn.dummyjson.com/product-images/25/thumbnail.jpg",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/25/1.png",
+        "https://cdn.dummyjson.com/product-images/25/2.jpg",
+        "https://cdn.dummyjson.com/product-images/25/3.png",
+        "https://cdn.dummyjson.com/product-images/25/4.jpg",
+        "https://cdn.dummyjson.com/product-images/25/thumbnail.jpg"
+      ],
+      "productId": 25,
+      "user": 1,
+      "quantity": 1,
+      "id": 13
+    },
+    {
+      "title": "Eau De Perfume Spray",
+      "description": "Genuine  Al-Rehab spray perfume from UAE/Saudi Arabia/Yemen High Quality",
+      "price": 30,
+      "discountPercentage": 10.99,
+      "rating": 4.7,
+      "stock": 105,
+      "brand": "Lord - Al-Rehab",
+      "category": "fragrances",
+      "thumbnail": "https://cdn.dummyjson.com/product-images/15/thumbnail.jpg",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/15/1.jpg",
+        "https://cdn.dummyjson.com/product-images/15/2.jpg",
+        "https://cdn.dummyjson.com/product-images/15/3.jpg",
+        "https://cdn.dummyjson.com/product-images/15/4.jpg",
+        "https://cdn.dummyjson.com/product-images/15/thumbnail.jpg"
+      ],
+      "productId": 15,
+      "user": 2,
+      "quantity": 1,
+      "id": 14
     }
   ],
-  "user": [
+  "address": [
     {
+      "first-name": "vishal",
+      "last-name": "nishad",
       "email": "vishal0073198@gmail.com",
-      "password": "Vishal@3198",
-      "checkPassword": "Vishal@3198",
+      "phone": "09284982917",
+      "street-address": "yashwant nagar,shilphata,khopoli",
+      "city": "khopoli",
+      "region": "Maharashtra",
+      "postal-code": "410203",
+      "user": 1,
       "id": 1
     },
     {
+      "first-name": "ritik",
+      "last-name": "rajbhar",
       "email": "vishal0073198@gmail.com",
-      "password": "Vishal@3198",
-      "checkPassword": "Vishal@3198",
+      "phone": "09284982917",
+      "street-address": "yashwant nagar,shilphata,khopoli",
+      "city": "khopoli",
+      "region": "Maharashtra",
+      "postal-code": "410203",
+      "user": 2,
       "id": 2
+    },
+    {
+      "first-name": "anil",
+      "last-name": "sidhu",
+      "email": "anil@test.com",
+      "phone": "09284982917",
+      "street-address": "lal chauk ",
+      "city": "noida",
+      "region": "uttarpradesh",
+      "postal-code": "236512",
+      "user": 3,
+      "id": 3
+    },
+    {
+      "first-name": "vishal",
+      "last-name": "nishad",
+      "email": "vishal0073198@gmail.com",
+      "phone": "09284982917",
+      "street-address": "yashwant nagar,shilphata,khopoli",
+      "city": "khopoli",
+      "region": "Maharashtra",
+      "postal-code": "410203",
+      "user": 6,
+      "id": 4
+    },
+    {
+      "first-name": "vishal",
+      "last-name": "nishad",
+      "email": "vishal0073198@gmail.com",
+      "phone": "09284982917",
+      "street-address": "yashwant nagar,shilphata,khopoli",
+      "city": "khopoli",
+      "region": "Maharashtra",
+      "postal-code": "410203",
+      "user": 2,
+      "id": 5
+    }
+  ],
+  "order": [
+    {
+      "address": {
+        "first-name": "vishal",
+        "last-name": "nishad",
+        "email": "vishal0073198@gmail.com",
+        "phone": "09284982917",
+        "street-address": "yashwant nagar,shilphata,khopoli",
+        "city": "khopoli",
+        "region": "Maharashtra",
+        "postal-code": "410203",
+        "user": 1,
+        "id": 1
+      },
+      "paymentMethod": "pay on delivery",
+      "cartData": [
+        {
+          "title": "iPhone 9",
+          "description": "An apple mobile which is nothing like apple",
+          "price": 549,
+          "discountPercentage": 12.96,
+          "rating": 4.69,
+          "stock": 94,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/1/1.jpg",
+            "https://cdn.dummyjson.com/product-images/1/2.jpg",
+            "https://cdn.dummyjson.com/product-images/1/3.jpg",
+            "https://cdn.dummyjson.com/product-images/1/4.jpg",
+            "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"
+          ],
+          "productId": 1,
+          "user": 1,
+          "quantity": 1,
+          "id": 4
+        },
+        {
+          "title": "Handcraft Chinese style",
+          "description": "Handcraft Chinese style art luxury palace hotel villa mansion home decor ceramic vase with brass fruit plate",
+          "price": 60,
+          "discountPercentage": 15.34,
+          "rating": 4.44,
+          "stock": 7,
+          "brand": "luxury palace",
+          "category": "home-decoration",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/29/thumbnail.webp",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/29/1.jpg",
+            "https://cdn.dummyjson.com/product-images/29/2.jpg",
+            "https://cdn.dummyjson.com/product-images/29/3.webp",
+            "https://cdn.dummyjson.com/product-images/29/4.webp",
+            "https://cdn.dummyjson.com/product-images/29/thumbnail.webp"
+          ],
+          "productId": 59,
+          "user": 1,
+          "quantity": 1,
+          "id": 9
+        }
+      ],
+      "user": 1,
+      "id": 1
+    },
+    {
+      "address": {
+        "first-name": "vishal",
+        "last-name": "nishad",
+        "email": "vishal0073198@gmail.com",
+        "phone": "09284982917",
+        "street-address": "yashwant nagar,shilphata,khopoli",
+        "city": "khopoli",
+        "region": "Maharashtra",
+        "postal-code": "410203",
+        "user": 1,
+        "id": 1
+      },
+      "paymentMethod": "pay on delivery",
+      "cartData": [
+        {
+          "title": "Gulab Powder 50 Gram",
+          "description": "Dry Rose Flower Powder Gulab Powder 50 Gram • Treats Wounds",
+          "price": 70,
+          "discountPercentage": 13.58,
+          "rating": 4.87,
+          "stock": 47,
+          "brand": "Dry Rose",
+          "category": "groceries",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/25/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/25/1.png",
+            "https://cdn.dummyjson.com/product-images/25/2.jpg",
+            "https://cdn.dummyjson.com/product-images/25/3.png",
+            "https://cdn.dummyjson.com/product-images/25/4.jpg",
+            "https://cdn.dummyjson.com/product-images/25/thumbnail.jpg"
+          ],
+          "productId": 25,
+          "user": 1,
+          "quantity": 1,
+          "id": 13
+        }
+      ],
+      "user": 1,
+      "id": 2
+    },
+    {
+      "address": {
+        "first-name": "ritik",
+        "last-name": "rajbhar",
+        "email": "vishal0073198@gmail.com",
+        "phone": "09284982917",
+        "street-address": "yashwant nagar,shilphata,khopoli",
+        "city": "khopoli",
+        "region": "Maharashtra",
+        "postal-code": "410203",
+        "user": 2,
+        "id": 2
+      },
+      "paymentMethod": "pay via card",
+      "cartData": [
+        {
+          "title": "iPhone 9",
+          "description": "An apple mobile which is nothing like apple",
+          "price": 549,
+          "discountPercentage": 12.96,
+          "rating": 4.69,
+          "stock": 94,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/1/1.jpg",
+            "https://cdn.dummyjson.com/product-images/1/2.jpg",
+            "https://cdn.dummyjson.com/product-images/1/3.jpg",
+            "https://cdn.dummyjson.com/product-images/1/4.jpg",
+            "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"
+          ],
+          "productId": 1,
+          "user": 2,
+          "quantity": 2,
+          "id": 5
+        },
+        {
+          "title": "Infinix INBOOK",
+          "description": "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty",
+          "price": 1099,
+          "discountPercentage": 11.83,
+          "rating": 4.54,
+          "stock": 96,
+          "brand": "Infinix",
+          "category": "laptops",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/9/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/9/1.jpg",
+            "https://cdn.dummyjson.com/product-images/9/2.png",
+            "https://cdn.dummyjson.com/product-images/9/3.png",
+            "https://cdn.dummyjson.com/product-images/9/4.jpg",
+            "https://cdn.dummyjson.com/product-images/9/thumbnail.jpg"
+          ],
+          "productId": 9,
+          "user": 2,
+          "quantity": 1,
+          "id": 6
+        },
+        {
+          "title": "Fog Scent Xpressio Perfume",
+          "description": "Product details of Best Fog Scent Xpressio Perfume 100ml For Men cool long lasting perfumes for Men",
+          "price": 13,
+          "discountPercentage": 8.14,
+          "rating": 4.59,
+          "stock": 61,
+          "brand": "Fog Scent Xpressio",
+          "category": "fragrances",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/13/thumbnail.webp",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/13/1.jpg",
+            "https://cdn.dummyjson.com/product-images/13/2.png",
+            "https://cdn.dummyjson.com/product-images/13/3.jpg",
+            "https://cdn.dummyjson.com/product-images/13/4.jpg",
+            "https://cdn.dummyjson.com/product-images/13/thumbnail.webp"
+          ],
+          "productId": 13,
+          "user": 2,
+          "quantity": 1,
+          "id": 7
+        },
+        {
+          "title": "Handcraft Chinese style",
+          "description": "Handcraft Chinese style art luxury palace hotel villa mansion home decor ceramic vase with brass fruit plate",
+          "price": 60,
+          "discountPercentage": 15.34,
+          "rating": 4.44,
+          "stock": 7,
+          "brand": "luxury palace",
+          "category": "home-decoration",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/29/thumbnail.webp",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/29/1.jpg",
+            "https://cdn.dummyjson.com/product-images/29/2.jpg",
+            "https://cdn.dummyjson.com/product-images/29/3.webp",
+            "https://cdn.dummyjson.com/product-images/29/4.webp",
+            "https://cdn.dummyjson.com/product-images/29/thumbnail.webp"
+          ],
+          "productId": 29,
+          "user": 2,
+          "quantity": 1,
+          "id": 8
+        }
+      ],
+      "user": 2,
+      "id": 3
+    },
+    {
+      "address": {
+        "first-name": "vishal",
+        "last-name": "nishad",
+        "email": "vishal0073198@gmail.com",
+        "phone": "09284982917",
+        "street-address": "yashwant nagar,shilphata,khopoli",
+        "city": "khopoli",
+        "region": "Maharashtra",
+        "postal-code": "410203",
+        "user": 2,
+        "id": 5
+      },
+      "paymentMethod": "pay on delivery",
+      "cartData": [
+        {
+          "title": "Eau De Perfume Spray",
+          "description": "Genuine  Al-Rehab spray perfume from UAE/Saudi Arabia/Yemen High Quality",
+          "price": 30,
+          "discountPercentage": 10.99,
+          "rating": 4.7,
+          "stock": 105,
+          "brand": "Lord - Al-Rehab",
+          "category": "fragrances",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/15/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/15/1.jpg",
+            "https://cdn.dummyjson.com/product-images/15/2.jpg",
+            "https://cdn.dummyjson.com/product-images/15/3.jpg",
+            "https://cdn.dummyjson.com/product-images/15/4.jpg",
+            "https://cdn.dummyjson.com/product-images/15/thumbnail.jpg"
+          ],
+          "productId": 15,
+          "user": 2,
+          "quantity": 1,
+          "id": 14
+        }
+      ],
+      "user": 2,
+      "id": 4
     }
   ]
 }

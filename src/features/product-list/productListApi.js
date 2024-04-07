@@ -20,6 +20,7 @@ export function ProductListFilterApi(queryString) {
 
 export function AddToCartApi(item) {
   return new Promise(async (resolve) => {
+    delete item.id
     const response = await fetch(`http://localhost:8080/cart`,
       {
         method: "POST",
@@ -35,9 +36,9 @@ export function AddToCartApi(item) {
   );
 }
 
-export function CartListApi() {
+export function CartListApi(userId) {
   return new Promise(async (resolve) => {
-    const response = await fetch(`http://localhost:8080/cart`);
+    const response = await fetch(`http://localhost:8080/cart?user=${userId}`);
     const data = await response.json();
     resolve({ data })
   }
@@ -134,11 +135,72 @@ export function CreateUserApi(userData) {
   );
 }
 
-export function CheckUserApi() {
+export function LoginUserApi(userData) {
   return new Promise(async (resolve) => {
-    const response = await fetch('http://localhost:8080/user');
+    const response = await fetch(`http://localhost:8080/user?email=${userData.email}&password=${userData.password}`);
     const data = await response.json();
+    console.log(data)
+   
     resolve({ data })
-  }
+   
+    }
+  );
+}
+
+export function AddressApi(userData) {
+  return new Promise(async (resolve) => {
+    const response = await fetch(`http://localhost:8080/address`,{
+      method:'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+    });
+    const data = await response.json();
+   
+    resolve({ data })
+   
+    }
+  );
+}
+
+export function GetAddressApi(userId) {
+  return new Promise(async (resolve) => {
+    const response = await fetch(`http://localhost:8080/address?user=${userId}`);
+    const data = await response.json();
+   
+    resolve({ data })
+   
+    }
+  );
+}
+
+export function OrderApi(orderData) {
+  return new Promise(async (resolve) => {
+    const response = await fetch(`http://localhost:8080/order`,{
+      method:'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(orderData)
+    });
+    const data = await response.json();
+   
+    resolve({ data })
+   
+    }
+  );
+}
+
+export function GetOrderApi(userId) {
+  return new Promise(async (resolve) => {
+    const response = await fetch(`http://localhost:8080/order?user=${userId}`);
+    const data = await response.json();
+   
+    resolve({ data })
+   
+    }
   );
 }
